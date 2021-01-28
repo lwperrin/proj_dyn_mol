@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 class Atome :
-#On définit un atome par les coordonnées dans l'espace de son centre et son rayon.
+	#On définit un atome par les coordonnées dans l'espace de son centre et son rayon.
 	def __init__(self, x,y,z,r):
 		self.x=x #position du centre de l'atome dans l'espace
 		self.y=y
@@ -23,9 +23,10 @@ class Atome :
 		dist=sqrt((self.x-other.x)**2+(self.y-other.y)**2+(self.z-other.z**2))
 		return dist
 
-	def plot(self): #affiche l'atome et sa position
-		liste_x=[self.r*cos(t)+self.x for t in range(0,7,100)]
-		liste_y=[self.r*sin(t)+self.y for t in range(0,7,100)]
+	def affiche(self): #affiche l'atome et sa position
+		liste_x=[self.r*cos(t*10**-2)+self.x for t in range(0, 700)]
+		liste_y=[self.r*sin(t*10**-2)+self.y for t in range(0, 700)]
+		plt.plot(self.x, self.y, '*')
 		plt.plot(liste_x,liste_y)
 		return None
 

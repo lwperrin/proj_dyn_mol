@@ -28,6 +28,11 @@ class Atome :
 		liste_y=[self.r*sin(t*10**-2)+self.y for t in range(0, 700)]
 		plt.plot(self.x, self.y, '*')
 		plt.plot(liste_x,liste_y)
+		axes = plt.gca()
+		axes.set_xlim(-10**-9,10**-9)
+		axes.set_ylim(-10**-9,10**-9)
+		plt.xlabel('position en m')
+		plt.ylabel('position en m')
 		return None
 
 class Interaction :

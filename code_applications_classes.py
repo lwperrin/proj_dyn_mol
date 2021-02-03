@@ -6,9 +6,7 @@ r = 71*10**-12
 sig = 3.4*10**-10
 rmin=2**(1/6)*sig
 rcut = 2**(7/6)*sig
-print(rmin)
 E0 = 1.65*10**-21
-
 atome_ref = Atome(0,0,0,r)
 
 X = np.linspace(3.05*10**-10, 1.5*10**-9, 500) # petit problème de distances...
@@ -29,6 +27,7 @@ plt.show()
 
 # position des atomes
 for i in range(len(atome_mobile)):
+    plt.figure(figsize=(16,9))
     plt.subplot(1,2,1)
     atome_ref.affiche()
     atome_mobile[i].affiche()
@@ -44,6 +43,5 @@ for i in range(len(atome_mobile)):
     axes.set_ylim(-0.00002 * 10 ** -16, 0.0001 * 10 ** -16)
     plt.xlabel('distance entre les atomes en m')
     plt.ylabel("Energie potentielle d'interaction en J")
-    plt.show()
-    #dist=atome_mobile[i]-atome_ref
-    #plt.savefig("C:/Users/lwper/OneDrive/Bureau/proj2b/partagé/proj_dyn_mol/images_2_atomes/image_"+str(dist)+".png")
+    #plt.show()
+    plt.savefig("C:/Users/lwper/OneDrive/Bureau/proj2b/partagé/proj_dyn_mol/images_2_atomes/image_"+str(i)+".pdf")

@@ -29,16 +29,24 @@ class Atome :
 		plt.plot(self.x, self.y, '*',color='g')
 		plt.plot(liste_x,liste_y)
 		axes = plt.gca()
-		axes.set_xlim(-10**-9,10**-9)
-		axes.set_ylim(-10**-9,10**-9)
+		axes.set_xlim(-2.5*10**-9,2.5*10**-9)
+		axes.set_ylim(-2.5*10**-9,2.5*10**-9)
 		plt.xlabel('position en m')
 		plt.ylabel('position en m')
 		return None
 
 	def afficher_force(self,Force):
-		plt.plot([self.x, Force[0]+self.x],[self.y, Force[1]+self.y],color='k')  # dans le plan pour l'instant, on verra plus tard pour la 3D
-		plt.plot([Force[0]+self.x],[Force[1]+self.y],'o',color='k')
+		plt.plot([self.x,Force[0]/2+self.x],[self.y,Force[1]/2+self.y],'k')
 		return None
+
+	def xpos(self):
+		return self.x
+
+	def ypos(self):
+		return self.y
+
+	def zpos(self):
+		return self.z
 
 class Interaction :
 	def __init__(self,atome1,atome2,rcut):
@@ -48,9 +56,15 @@ class Interaction :
 		self.dist=atome1-atome2
 
 	def lennardjones_potentiel(self,E0,sig): # energie potentielle d'interacion
-		potentiel=4*E0*((sig/self.dist)**12-(sig/self.dist)**6)
+		if self.dist==0 :
+			return 0
+		else :
+			potentiel=4*E0*((sig/self.dist)**12-(sig/self.dist)**6)
 		return potentiel
 
 	def lennardjones_force(self,E0,sig): # force d'interaction entre les atomes
-		force=-4*E0*(6*sig**6/self.dist**7-12*sig**12/self.dist**13)
+		if self.dist==0 :
+			return 0
+		else :
+			force=-4*E0*(6*sig**6/self.dist**7-12*sig**12/self.dist**13)
 		return force

@@ -25,10 +25,10 @@ plt.close()
 liste_atomes2 = liste_atomes[:]
 
 for t in range(int(tfin/dt)):
+    plt.figure(figsize=(16, 9))
     for atome in range(nb_atms): #On calcule la matrice d'interactions à un instant
         for autre in range(nb_atms):
             Matrice_interactions[atome][autre]=Interaction(liste_atomes[atome],liste_atomes[autre],rcut)
-    for atome in range(nb_atms):
         liste_interactions=Matrice_interactions[atome]
         x, y = liste_atomes[atome].xpos(), liste_atomes[atome].ypos()
         x2, y2 = liste_atomes2[atome].xpos(), liste_atomes2[atome].ypos()
@@ -41,8 +41,8 @@ for t in range(int(tfin/dt)):
         y, y2 = 2*y-y2+0.5*accy*dt**2, y
         liste_atomes[atome] = Atome(x,y,0,r)
         liste_atomes2[atome] = Atome(x2,y2,0,r)
-    plt.figure(figsize=(16,9))
-    for atome in liste_atomes :
-        atome.affiche()
-    plt.savefig("C:/Users/lwper/OneDrive/Bureau/proj2b/partagé/proj_dyn_mol/images_10_atomes/image_" + str(t) + ".pdf")
+        liste_atomes[atome].affiche()
+        liste_atomes[atome].afficher_force([accx/m,accy/m])
+    plt.show()
+    #plt.savefig("C:/Users/lwper/OneDrive/Bureau/proj2b/partagé/proj_dyn_mol/images_10_atomes/image_" + str(t) + ".pdf")
     plt.close()
